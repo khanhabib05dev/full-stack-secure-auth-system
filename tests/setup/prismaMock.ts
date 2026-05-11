@@ -1,17 +1,20 @@
-
-
-import { mockDeep, mockReset, DeepMockProxy } from "jest-mock-extended";
+// tests/setup/prismaMock.ts
 import { beforeEach, vi } from "vitest";
-import { prisma } from "../../src/lib/prisma";
+import { mockDeep, mockReset, DeepMockProxy } from "vitest-mock-extended";
 import { PrismaClient } from "../../src/generated/prisma/client";
 
+// Deep mock তৈরি
+const prismaMock: DeepMockProxy<PrismaClient> =
+  mockDeep<PrismaClient>();
+
+// তোমার prisma singleton/module mock করো
 vi.mock("../../src/config/prisma", () => ({
-  default: mockDeep<PrismaClient>(),
+  default: prismaMock,
 }));
 
-
-export const prismaMock = prisma as DeepMockProxy<PrismaClient>;
-
+// প্রতিটি test এর আগে mock reset
 beforeEach(() => {
   mockReset(prismaMock);
 });
+
+export { prismaMock };

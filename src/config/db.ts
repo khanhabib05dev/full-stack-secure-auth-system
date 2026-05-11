@@ -15,4 +15,4 @@ export const connectToDatabase = async (): Promise<void> => {
   }
 };
 
-export { prisma };
+
