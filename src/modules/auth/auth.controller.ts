@@ -183,6 +183,8 @@ const updateProfile = asyncHandler(async (req: Request, res: Response) => {
 // ---------------- GOOGLE OAUTH ----------------
 const googleRedirect = asyncHandler(async (_req: Request, res: Response) => {
   const url = getGoogleAuthUrl();
+  console.log("main url",url);
+  
   res.redirect(url);
 });
 
