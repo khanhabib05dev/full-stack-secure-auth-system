@@ -249,7 +249,7 @@ const resendVerification = async (email: string) => {
 const loginUser = async (payload: ILoginPayload, ctx: IRequestContext) => {
   const user = await prisma.user.findUnique({ where: { email: payload.email } });
   if (!user || user.deletedAt) {
-    throw new AppError("Invalid email or password", 401);
+    throw new AppError("Invalid email or password", 400);
   }
   if (user.status === UserStatus.banned) {
     throw new AppError("This account is banned", 403);
@@ -262,7 +262,7 @@ const loginUser = async (payload: ILoginPayload, ctx: IRequestContext) => {
   }
   const passwordOk = await verifyPassword(payload.password, user.password);
   if (!passwordOk) {
-    throw new AppError("Invalid email or password", 401);
+    throw new AppError("Invalid email or password", 400);
   }
   if (!user.emailVerified) {
     throw new AppError("Please verify your email before logging in.", 403);
