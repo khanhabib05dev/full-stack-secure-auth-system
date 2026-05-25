@@ -1,20 +1,14 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": ".vercel/output",
-  "env": {
-    "NODE_ENV": "production"
-  },
-  "functions": {
-    "api/**/*.ts": {
-      "memory": 1024,
-      "maxDuration": 30
-    }
-  },
-  "redirects": [
+  "version": 2,
+  "rewrites": [
     {
-      "source": "/",
-      "destination": "/api/health",
-      "permanent": false
+      "source": "/(.*)",
+      "destination": "/api/index.ts"
     }
-  ]
+  ],
+  "functions": {
+    "api/index.ts": {
+      "includeFiles": "src/static/**"
+    }
+  }
 }

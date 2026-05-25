@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-"scripts": {
-  "dev": "bun --hot src/server.ts",
-  "build": "tsc && tsx build-vercel.ts",
-  "start": "node dist/server.js",
-  "vercel-build": "prisma generate && npm run build"
-},
+ "scripts": {
+ "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx tsx watch src/server.ts",
+    "build": "tsup src/server.ts src/app.ts --format esm --clean && copyfiles -u 1 src/static/**/* dist",
+    "start": "node dist/server.js",
+    "seed:admin": "npx tsx  src/scripts/seedAdmin.ts",
+    "postinstall": "prisma generate"
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
