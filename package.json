@@ -3,14 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "scripts": {
-    "dev": "bun --hot src/server.ts",
-    "test": "vitest run",
-    "test:unit": "vitest run --testPathPattern=unit",
-    "test:integration": "vitest run --testPathPattern=integration",
-    "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
-  },
+"scripts": {
+  "dev": "bun --hot src/server.ts",
+  "build": "tsc && tsx build-vercel.ts",
+  "start": "node dist/server.js",
+  "vercel-build": "prisma generate && npm run build"
+},
   "author": "",
   "license": "ISC",
   "devDependencies": {

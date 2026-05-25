@@ -35,17 +35,17 @@ app.get("/", (req, res) => {
 
 
 export const startServer = async () => {
-
-  try {
+  // Vercel এ app.listen() কাজ করে না
+  // শুধু local development এ করবে
+  if (process.env.NODE_ENV !== 'production') {
     const PORT = envConfig.PORT || 5000;
     app.listen(PORT, () => {
-      console.log(`🚀Blitz Analyzer  Server is running on port ${PORT}`);
+      console.log(`🚀 Server running on port ${PORT}`);
     })
-  } catch (error) {
-    console.error('❌ Error initializing app:', error);
-    process.exit(1);
   }
 };
+
+
 app.use(notFound);
 app.use(errorHandler);
 

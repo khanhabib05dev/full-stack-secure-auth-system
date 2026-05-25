@@ -1,4 +1,4 @@
-import { GenerateMode } from "../schemas/ai.schemas";
+
 
 function slugify(value: string): string {
   return value
@@ -8,7 +8,7 @@ function slugify(value: string): string {
     .replace(/^-+|-+$/g, "");
 }
 
-export function buildFallbackOutput(mode: GenerateMode, data: Record<string, any>) {
+export function buildFallbackOutput(mode: any, data: Record<string, any>) {
   switch (mode) {
     case "blog": {
       const topic = data.topic || "Professional Content";
