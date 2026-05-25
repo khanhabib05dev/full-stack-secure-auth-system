@@ -1,34 +1,14 @@
+// tsup.config.ts
 import { defineConfig } from "tsup";
 
 export default defineConfig({
-  entry: ["src/server.ts"],
-  format: ["esm"],          // ESM output
-  target: "node22",
-  outDir: "dist",
-  sourcemap: true,
+  entry: ["src/app.ts", "src/server.ts"],
+  format: ["esm"],
   clean: true,
-  bundle: true,
-  splitting: false,
-
-  // 🔑 Externalize all node_modules + Prisma
-  external: [
-    "express",
-    "@prisma/client",
-    "cors",
-    "cookie-parser",
-    "compression",
-    "dotenv",
-    "helmet",
-    "hpp",
-    "morgan",
-    "events",
-    "path",
-    "fs",
-    "url"
-  ],
-
-  outExtension({ format }) {
-    if (format === "esm") return { js: ".js" };
-    return {};
+  dts: false,
+  sourcemap: true,
+  target: "node22",
+  loader: {
+    ".html": "copy",
   },
 });
