@@ -13,7 +13,7 @@ const REFRESH_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 const baseCookie = (maxAge: number, path: string): CookieOptions => ({
   httpOnly: true,
   secure: isProd,
-  sameSite: isProd ? "strict" : "lax",
+  sameSite: isProd ? "none" : "lax",
   path,
   maxAge,
   ...(envConfig.COOKIE_DOMAIN ? { domain: envConfig.COOKIE_DOMAIN } : {}),
