@@ -1,0 +1,7 @@
+services:
+  app:
+    image: habib897/auth-app:updated
+    ports:
+      - "8000:8000"
+    env_file:
+      .env

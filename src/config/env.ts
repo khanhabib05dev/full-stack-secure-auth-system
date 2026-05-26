@@ -21,7 +21,7 @@ const envSchema = z.object({
   BETTER_AUTH_URL: z.string().optional(),
   GOOGLE_CLIENT_SECRET: z.string(),
   GOOGLE_CLIENT_ID: z.string(),
-  GOOGLE_REDIRECT_URI: z.string(),
+  GOOGLE_REDIRECT_URI: z.string().default('http://localhost:8000/api/auth/google/callback'),
   TOTP_ENCRYPTION_KEY: z.string().min(32).default('0123456789abcdef0123456789abcdef'),
   COOKIE_DOMAIN: z.string().optional(),
   CLOUDINARY_NAME: z.string(),

@@ -35,13 +35,12 @@ app.get("/", (req, res) => {
 
 
 export const startServer = async () => {
-  // changed here wrap for development
-  if (process.env.NODE_ENV !== 'production') {
-    const PORT = envConfig.PORT 
+  // Vercel এ app.listen() কাজ করে না
+  // শুধু local development এ করবে
+    const PORT = envConfig.PORT || 5000;
     app.listen(PORT, () => {
       console.log(`🚀 Server running on port ${PORT}`);
     })
-  }
 };
 
 
